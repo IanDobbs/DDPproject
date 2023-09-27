@@ -1,0 +1,46 @@
+---
+title: "Shiny Application and Reproducible Pitch"
+author: "Ian Dobbs"
+date: "`r Sys.Date()`"
+output: 
+        ioslides_presentation:
+                widescreen: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Application Data
+
+Longley's Economic Regresssion Data
+
+- A macroeconomic data set which provides a well-known example for a highly collinear regression.
+- A data frame with 7 economic variables, observed yearly from 1947 to 1962
+- Simple linear regression model to predict the level of unemployment for a given population size
+- A slider to select a given population size
+- A check box to show or hide the model
+- Real time update as population size changes
+- Result tab with plot and text output
+- Instruction tab
+- URL to shiny application
+
+## Regression Model
+
+```{r model}
+model <- lm(Unemployed ~ Population, longley)
+summary(model)$coef
+```
+
+## Slide with R Output
+
+```{r}
+
+```
+
+## Slide with Plot
+
+```{r}
+
+```
+
