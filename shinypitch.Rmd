@@ -1,5 +1,6 @@
 ---
-title: "Shiny Application and Reproducible Pitch"
+title: "An Employment Predictor Application"
+subtitle: "A Shiny Application and Reproducible Pitch"
 author: "Ian Dobbs"
 date: "`r Sys.Date()`"
 output: 
@@ -8,39 +9,48 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, options(scipen=999))
 ```
 
-## Application Data
+## Application Data & Purpose
 
-Longley's Economic Regresssion Data
+Longley's Economic Regression Data
 
 - A macroeconomic data set which provides a well-known example for a highly collinear regression.
 - A data frame with 7 economic variables, observed yearly from 1947 to 1962
-- Simple linear regression model to predict the level of unemployment for a given population size
-- A slider to select a given population size
-- A check box to show or hide the model
-- Real time update as population size changes
-- Result tab with plot and text output
-- Instruction tab
-- URL to shiny application
 
-## Regression Model
+Purpose of application
+
+- A simple and easy to use linear regression model to predict the number of employed for a given population size
+
+## Application Description
+
+- A slider to select a given population size
+- A check box to show or hide the regression model
+- Real time plot update as population size changes
+- A 'Result' tab to display results in the form of a scatter plot, and text output
+- A 'Documentation' tab to provide basic instructions on app usage
+- URL to shiny application https://iandobbs.shinyapps.io/longley/
+- URL to server.R and ui.R code on github https://github.com/IanDobbs/DDPproject/tree/gh-pages/longley
+
+## The Regression Model
+
+- The regression model `lm(Employed ~ Population, longley)` produces the following coefficients and r-squared values to determine if the explanatory model is a good fit.
 
 ```{r model}
-model <- lm(Unemployed ~ Population, longley)
+model <- lm(Employed ~ Population, longley)
 summary(model)$coef
+summary(model)$r.squared
 ```
 
-## Slide with R Output
+- The coefficients indicate that population increases employment (as expected). The low p-value >0.05 and high r.squared value indicate a strong relationship for the explanatory model.
 
-```{r}
+## Residual Plot
 
-```
+- The residual plots do not show any unexpected patterns which is further evidence that the model is a strong predictor.
 
-## Slide with Plot
-
-```{r}
-
+```{r residuals}
+par(mfrow = c(2, 2))
+plot(model)
 ```
 

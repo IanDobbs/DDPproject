@@ -4,7 +4,7 @@ data(longley)
 
 shinyServer(function(input, output) {
 
-    model <- lm(Unemployed ~ Population, longley)
+    model <- lm(Employed ~ Population, longley)
     
     modelpred <- reactive({
         popInput <- input$sliderPOP
@@ -14,10 +14,10 @@ shinyServer(function(input, output) {
      output$plot <- renderPlot({
         popInput <- input$sliderPOP
         
-        plot(longley$Population, longley$Unemployed, xlab = "Population (000's)", 
-             ylab = "Unemployment", bty = "n", pch = 16,
-             xlim = c(100, 140), ylim = c(180, 500))
-        title(main = "Unemployment Prediction Model",
+        plot(longley$Population, longley$Employed, xlab = "Population (000's)", 
+             ylab = "Employment", bty = "n", pch = 16,
+             xlim = c(102, 131), ylim = c(58, 72))
+        title(main = "Employment Prediction Model",
               sub = "data source: data(longley)")
         
         if(input$showModel){
